@@ -1,0 +1,56 @@
+﻿@model IEnumerable<NorthWind.Model.Products>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-controller="Home" asp-action="Index" >
+         <input class="form-control mr-sm-5" placeholder="Search" aria-label="Search" type="number" name="number" step="any" required >
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="filter">Filtrar</button>
+</form>
+
+<div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">
+                 ID Producto
+                </th >
+                <th scope="col">
+                    Nombre
+                </th>
+                <th scope="col">
+                    Unidades Stock
+                </th>
+                <th scope="col">
+                    SuplierID
+                </th>
+                <th scope="col">
+                    Categoria
+                </th>
+            </tr>
+            
+                @foreach (var item in Model)
+                {
+                   <tr>
+                          <th class="row text-center">
+                               @Html.DisplayFor(ModelItem=>item.ProductId)
+                         </th>
+                
+                          <td>
+                               @Html.DisplayFor(ModelItem=>item.ProductName)
+                         </td>
+                           <td>
+                               @Html.DisplayFor(ModelItem=>item.UnitsInStock)
+                         </td>  
+                          <td>
+                               @Html.DisplayFor(ModelItem=>item.SupplierId)
+                         </td>
+                   
+                          <td>
+                               @Html.DisplayFor(ModelItem=>item.Supplier.CompanyName)
+                         </td>
+                   </tr>
+                }
+          
+        </table>
+        
+</>
